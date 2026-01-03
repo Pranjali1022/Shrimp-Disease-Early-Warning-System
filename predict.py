@@ -1,7 +1,7 @@
 import joblib
 import pandas as pd
 
-model_path="/content/model.pkl"
+model_path="model.pkl"
 # Load full pipeline (imputer + scaler + trained model)
 pipeline = joblib.load(model_path)
 
