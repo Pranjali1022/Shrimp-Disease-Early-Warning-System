@@ -1,8 +1,9 @@
 import joblib
 import pandas as pd
+import os
 
-model_path="model.pkl"
-# Load full pipeline (imputer + scaler + trained model)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "model.pkl")
 pipeline = joblib.load(model_path)
 
 def predict_water_quality(df):
