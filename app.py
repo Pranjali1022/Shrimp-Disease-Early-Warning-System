@@ -9,13 +9,13 @@ uploaded = st.file_uploader("Upload CSV file", type="csv")
 
 if uploaded:
     df = pd.read_csv(uploaded)
-    st.write("### Input Data")
+    st.write("Input Data")
     st.dataframe(df)
 
     # Run prediction
     result = predict_water_quality(df)
 
-    st.write("### Prediction Results")
+    st.write("Prediction Results")
     st.dataframe(result)
 
     st.success("Prediction completed successfully!")
