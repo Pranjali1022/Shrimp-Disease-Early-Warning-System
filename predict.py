@@ -6,10 +6,6 @@ model_path="/content/model.pkl"
 pipeline = joblib.load(model_path)
 
 def predict_water_quality(df):
-    """
-    df must be a pandas DataFrame with same feature columns
-    as your training data.
-    """
     # Predictions
     preds = pipeline.predict(df)
 
