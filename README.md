@@ -1,107 +1,138 @@
-# Shrimp Water Quality Prediction (ML + Streamlit)
+# Shrimp Disease Early Warning System
+Streamlit App powered by XGBoost & Scikit-learn Pipeline
 
-This project predicts shrimp pond water quality using a Machine Learning model and preprocessing pipeline.  
-Users can upload a CSV file with water parameters to get:
+This project implements a machine learning–based early warning system to predict shrimp disease risk using water quality parameters.
+The system integrates data preprocessing and model inference into a single pipeline and is deployed as an interactive Streamlit web application.
 
-- Water quality status (**Good / Caution / Danger**)
-- Suggestions to improve water conditions
+# Project Overview
 
-The model is saved as a **single pipeline (`model.pkl`)**, which includes:
-- Imputer (handles missing values)
-- Scaler (StandardScaler)
-- Trained ML classifier
+Shrimp aquaculture is highly sensitive to water quality fluctuations.
+This application helps farmers and researchers identify disease outbreak risk in advance, enabling proactive farm management decisions.
 
----
+# Key capabilities:
 
-## 🚀 How to Run the App Locally
+Accepts real-time water quality inputs
 
-### 1. Install required libraries  
-Open terminal inside your project folder and run:
+Predicts disease risk level using a trained XGBoost classifier
 
-```bash
+Provides actionable preventive recommendations
+
+Ensures training–inference consistency via a scikit-learn Pipeline
+
+# Machine Learning Approach
+
+Model: XGBoost Classifier
+
+Pipeline Components:
+
+Missing value imputation
+
+Feature scaling
+
+Disease risk classification
+
+# Output:
+
+Class probability (predict_proba)
+
+Risk categorization based on confidence thresholds
+
+All preprocessing and inference steps are encapsulated inside a single serialized pipeline, eliminating manual preprocessing during deployment.
+
+# Input Features
+
+The model uses the following water quality parameters:
+
+Temperature
+
+Turbidity
+
+Dissolved Oxygen (DO)
+
+Biological Oxygen Demand (BOD)
+
+CO₂
+
+pH
+
+Alkalinity
+
+Hardness
+
+Calcium
+
+Ammonia
+
+Nitrite
+
+Phosphorus
+
+H₂S
+
+Plankton Count
+
+# Risk Interpretation
+Confidence Score	Risk Level
+< 40%	Low Risk
+40% – 70%	Moderate Risk
+> 70%	High Risk
+> 
+# Each risk level is accompanied by recommended farm management actions.
+
+# Project Structure
+shrimp-disease-early-warning-system/
+├── artifacts/
+│   └── water_quality_XGBoost.pkl
+├── app.py
+├── prediction.py
+├── requirements.txt
+└── README.md
+
+
+app.py → Streamlit user interface
+
+prediction.py → Model inference logic
+
+artifacts/ → Serialized ML pipeline
+
+requirements.txt → Deployment dependencies
+
+# Deployment
+
+This application is deployed using Streamlit Community Cloud.
+
+To run locally:
 pip install -r requirements.txt
-```
-
-### 2. Start the Streamlit app
-
-```bash
 streamlit run app.py
-```
 
-This will open:
+# Technologies Used in the project
 
-```
-http://localhost:8501
-```
+Python
 
----
+Streamlit
 
-## 📁 Project Structure
+Scikit-learn
 
-```
-shrimp_water_quality_model/
-├── model.pkl          # ML pipeline (imputer + scaler + trained model)
-├── predict.py         # Prediction code
-├── app.py             # Streamlit app
-├── requirements.txt   # Python dependencies
-└── README.md          # Project documentation
-```
+XGBoost
 
----
+Pandas, NumPy
 
-## 📥 CSV Input Format
+Joblib
 
-Your input CSV **must include the same columns as the training dataset**.
+# Use Case
 
-Example:
+Early detection of shrimp disease risk
 
-```csv
-pH,do,bod,turbidity,nitrate
-7.2,6.5,3.1,4.5,2.0
-6.0,2.5,9.0,30,45
-8.8,5.0,4.0,15,25
-```
+Decision support for aquaculture health management
 
-Column names are case-sensitive.
+Educational and research-oriented ML deployment example
 
----
+# Key Highlights
 
-## 🧠 Label Mapping
+End-to-end ML pipeline deployment
 
-```
-0 → Good
-1 → Caution
-2 → Danger
-```
+Production-safe preprocessing & inference
 
-These labels appear as text in the results table in Streamlit.
+Modular and scalable application design
 
----
-
-## 🛠 How Prediction Works
-
-When you upload a CSV:
-
-1. The Streamlit app loads `model.pkl`
-2. The pipeline:
-   - Imputes missing values
-   - Scales features
-   - Runs predictions using the ML model
-3. The app displays:
-   - Status per row
-   - Suggestions based on prediction
-
----
-
-## 📌 Additional Notes
-
-- You can retrain the model in Google Colab and overwrite `model.pkl`.
-- Make sure your CSV columns match exactly.
-- The project is designed for easy deployment on **Streamlit Cloud**.
-
----
-
-## 👩‍💻 Author
-**Pranjali Patil**
-
----
+Real-world aquaculture domain application
