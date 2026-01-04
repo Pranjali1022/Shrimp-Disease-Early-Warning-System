@@ -6,11 +6,25 @@ import pandas as pd
 
 MODEL_PATH = "artifacts/water_quality_XGBoost.pkl"
 
-obj = joblib.load(MODEL_PATH)
-model = obj["model"]
-imputer = obj["imputer"]
-scaler = obj["scaler"]
-features = obj["features"]
+pipeline = joblib.load(MODEL_PATH)
+
+# Feature list must be defined manually
+features = [
+    "Temp",
+    "Turbidity (cm)",
+    "DO(mg/L)",
+    "BOD (mg/L)",
+    "CO2",
+    "pH`",
+    "Alkalinity (mg L-1 )",
+    "Hardness (mg L-1 )",
+    "Calcium (mg L-1 )",
+    "Ammonia (mg L-1 )",
+    "Nitrite (mg L-1 )",
+    "Phosphorus (mg L-1 )",
+    "H2S (mg L-1 )",
+    "Plankton (No. L-1)"
+]
 
 prevention = {
     "Low Risk": "Water quality looks stable. Continue routine monitoring every 24 hours.",
@@ -37,10 +51,7 @@ for feat in features:
 
 if st.button("Predict"):
     df = pd.DataFrame([input_values], columns=features)
-    X_imp = imputer.transform(df)
-    X_scaled = scaler.transform(X_imp)
-
-    probs = model.predict_proba(X_scaled)[0]
+    probs = pipeline.predict_proba(df)[0]
     confidence = float(np.max(probs))
 
     if confidence < 0.40:
