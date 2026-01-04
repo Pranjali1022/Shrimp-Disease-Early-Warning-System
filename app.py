@@ -8,7 +8,6 @@ MODEL_PATH = "artifacts/water_quality_XGBoost.pkl"
 
 pipeline = joblib.load(MODEL_PATH)
 
-# Feature list must be defined manually
 features = [
     "Temp",
     "Turbidity (cm)",
