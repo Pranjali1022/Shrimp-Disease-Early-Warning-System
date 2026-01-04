@@ -72,11 +72,14 @@ H₂S
 Plankton Count
 
 # Risk Interpretation
-Confidence Score	Risk Level
-< 40%	Low Risk
-40% – 70%	Moderate Risk
-> 70%	High Risk
-> 
+Confidence Score-Risk Level
+
+< 40%-Low Risk
+
+40% – 70% -	Moderate Risk
+
+> 70%-High Risk
+ 
 # Each risk level is accompanied by recommended farm management actions.
 
 # Project Structure
@@ -136,3 +139,4 @@ Production-safe preprocessing & inference
 Modular and scalable application design
 
 Real-world aquaculture domain application
+
