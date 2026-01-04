@@ -4,6 +4,10 @@ Streamlit App powered by XGBoost & Scikit-learn Pipeline
 This project implements a machine learning–based early warning system to predict shrimp disease risk using water quality parameters.
 The system integrates data preprocessing and model inference into a single pipeline and is deployed as an interactive Streamlit web application.
 
+
+**Streamlit App URL**
+https://shrimp-disease-early-warning-system-xrcx3khurxrj3pn6sf5gcf.streamlit.app/
+
 # Project Overview
 
 Shrimp aquaculture is highly sensitive to water quality fluctuations.
@@ -139,5 +143,6 @@ Production-safe preprocessing & inference
 Modular and scalable application design
 
 Real-world aquaculture domain application
+
 
 
