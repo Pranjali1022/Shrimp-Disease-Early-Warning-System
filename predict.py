@@ -7,8 +7,7 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 print("DEBUG: predict.py directory:", CURRENT_DIR)
 print("DEBUG: files here:", os.listdir(CURRENT_DIR))
 
-# Try loading model from same directory
-MODEL_PATH = os.path.join(CURRENT_DIR, "model.pkl")
+MODEL_PATH = os.path.join(THIS_FILE_DIR, "Actual_Model", "model.pkl")
 
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(
