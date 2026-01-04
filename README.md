@@ -80,7 +80,7 @@ Confidence Score-Risk Level
 
 > 70%-High Risk
  
-# Each risk level is accompanied by recommended farm management actions.
+Each risk level is accompanied by recommended farm management actions.
 
 # Project Structure
 shrimp-disease-early-warning-system/
@@ -139,4 +139,5 @@ Production-safe preprocessing & inference
 Modular and scalable application design
 
 Real-world aquaculture domain application
+
 
