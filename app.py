@@ -23,28 +23,28 @@ features = obj["features"]
 prevention = {
     "Low Risk": "Water quality looks stable. Continue routine monitoring every 24 hours.",
     "Moderate Risk": (
-        "- Moderate disease risk.
-"
-        "- Increase aeration
-"
-        "- Reduce feeding by ~20%
-"
-        "- Check ammonia & nitrite levels
-"
-        "- Consider partial water exchange"
+        "1. Moderate disease risk."
+        
+        "2. Increase aeration"
+        
+        "3. Reduce feeding by ~20%"
+        
+        "4. Check ammonia & nitrite levels"
+        
+        "5. Consider partial water exchange"
     ),
     "High Risk": (
-        "- HIGH disease outbreak risk!
-"
-        "- Immediate partial water exchange (20–30%)
-"
-        "- Increase DO using blowers/paddle wheels
-"
-        "- Stop feeding temporarily
-"
-        "- Add probiotics as recommended
-"
-        "- Consult a technician if symptoms persist"
+        "1. HIGH disease outbreak risk."
+        
+        "2. Immediate partial water exchange (20–30%)"
+        
+        "3. Increase DO using blowers/paddle wheels"
+        
+        "4. Stop feeding temporarily"
+        
+        "5. Add probiotics as recommended"
+        
+        "6. Consult a technician if symptoms persist"
     )
 }
 
@@ -103,9 +103,7 @@ if submit:
 
         risk = label_map[pred_class]
 
-        # ----------------------------
         # Display results
-        # ----------------------------
         st.subheader("Prediction Result")
         st.write(f"**Predicted Risk Level:** {risk}")
 
