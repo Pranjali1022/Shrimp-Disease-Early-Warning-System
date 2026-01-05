@@ -7,44 +7,42 @@ import pandas as pd
 
 # Load model + preprocessing
 MODEL_PATH = "artifacts/water_quality_XGBoost.pkl"
+pipeline = joblib.load(MODEL_PATH)
 
-try:
-    obj = joblib.load(MODEL_PATH)
-except FileNotFoundError:
-    st.error(f"Model file not found at {MODEL_PATH}. Please check path.")
-    st.stop()
-
-model = obj["model"]
-imputer = obj["imputer"]
-scaler = obj["scaler"]
-features = obj["features"]
+features = [
+    "Temp",
+    "Turbidity (cm)",
+    "DO(mg/L)",
+    "BOD (mg/L)",
+    "CO2",
+    "pH`",
+    "Alkalinity (mg L-1 )",
+    "Hardness (mg L-1 )",
+    "Calcium (mg L-1 )",
+    "Ammonia (mg L-1 )",
+    "Nitrite (mg L-1 )",
+    "Phosphorus (mg L-1 )",
+    "H2S (mg L-1 )",
+    "Plankton (No. L-1)"
+]
 
 # Prevention messages
 prevention = {
     "Low Risk": "Water quality looks stable. Continue routine monitoring every 24 hours.",
     "Moderate Risk": (
-        "1. Moderate disease risk."
-        
-        "2. Increase aeration"
-        
-        "3. Reduce feeding by ~20%"
-        
-        "4. Check ammonia & nitrite levels"
-        
-        "5. Consider partial water exchange"
+        "1. Moderate disease risk.\n"  
+        "2. Increase aeration.\n"
+        "3. Reduce feeding by ~20%.\n"
+        "4. Check ammonia & nitrite levels.\n"
+        "5. Consider partial water exchange."
     ),
     "High Risk": (
-        "1. HIGH disease outbreak risk."
-        
-        "2. Immediate partial water exchange (20–30%)"
-        
-        "3. Increase DO using blowers/paddle wheels"
-        
-        "4. Stop feeding temporarily"
-        
-        "5. Add probiotics as recommended"
-        
-        "6. Consult a technician if symptoms persist"
+        "1. HIGH disease outbreak risk.\n"
+        "2. Immediate partial water exchange (20–30%)\n"
+        "3. Increase DO using blowers/paddle wheels.\n"
+        "4. Stop feeding temporarily.\n"
+        "5. Add probiotics as recommended.\n"
+        "6. Consult a technician if symptoms persist."
     )
 }
 
@@ -86,13 +84,9 @@ if submit:
         # Build DataFrame
         df_input = pd.DataFrame([input_values], columns=features)
 
-        # Preprocess
-        X_imp = imputer.transform(df_input)
-        X_scaled = scaler.transform(X_imp)
+       probs = pipeline.predict_proba(df_input)[0]
+       pred_class = pipeline.predict(df_input)[0]
 
-        # Predict
-        probs = model.predict_proba(X_scaled)[0]
-        pred_class = model.predict(X_scaled)[0]
 
         # Class → label mapping
         label_map = {
