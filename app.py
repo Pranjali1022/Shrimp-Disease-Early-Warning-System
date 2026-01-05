@@ -79,16 +79,19 @@ with st.form(key="input_form"):
     submit = st.form_submit_button("Predict Disease Risk")
 
 # Prediction logic
+# ----------------------------
+# Prediction logic
+# ----------------------------
 if submit:
     try:
         # Build DataFrame
         df_input = pd.DataFrame([input_values], columns=features)
 
-       probs = pipeline.predict_proba(df_input)[0]
-       pred_class = pipeline.predict(df_input)[0]
+        # Predict using pipeline
+        probs = pipeline.predict_proba(df_input)[0]
+        pred_class = pipeline.predict(df_input)[0]
 
-
-        # Class → label mapping
+        # Map class index to risk label
         label_map = {
             0: "Low Risk",
             1: "Moderate Risk",
@@ -101,15 +104,15 @@ if submit:
         st.subheader("Prediction Result")
         st.write(f"**Predicted Risk Level:** {risk}")
 
-        st.markdown("Model confidence per risk class")
+        st.markdown("### Model confidence per risk class")
         for cls, label in label_map.items():
             st.write(f"{label}: {probs[cls]*100:.2f}%")
 
-        st.markdown("Recommended actions")
+        st.markdown("### Recommended actions")
         st.write(prevention[risk])
 
         if risk == "High Risk":
-            st.warning("High risk detected. Please verify input values carefully.")
+            st.warning("⚠️ High risk detected. Please verify input values carefully.")
 
     except Exception as e:
         st.error(f"Error during prediction: {e}")
