@@ -79,9 +79,6 @@ with st.form(key="input_form"):
     submit = st.form_submit_button("Predict Disease Risk")
 
 # Prediction logic
-# ----------------------------
-# Prediction logic
-# ----------------------------
 if submit:
     try:
         # Build DataFrame
@@ -112,14 +109,14 @@ if submit:
         st.write(prevention[risk])
 
         if risk == "High Risk":
-            st.warning("⚠️ High risk detected. Please verify input values carefully.")
+            st.warning("High risk detected. Please verify input values carefully.")
 
     except Exception as e:
         st.error(f"Error during prediction: {e}")
 
 st.markdown("---")
 
-st.markdown("Model Performance Summary")
+st.markdown("### Model Performance Summary")
 
 st.write("""The deployed XGBoost model was evaluated on a held-out validation set using multiclass classification metrics.""")
 st.write("- **Overall Accuracy:** ~99.6%")
@@ -128,7 +125,7 @@ st.write("- **Balanced precision and recall across all risk classes**")
 st.info("Most misclassifications occur between Moderate and High risk levels, "
         "which reflects realistic transitional water conditions in shrimp farms.")
 
-st.markdown("Model Error Characteristics")
+st.markdown("### Model Error Characteristics")
 
 st.write("""
 - Near-perfect classification for Low-risk conditions  
